@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 csv_dir = input("Enter the folder name of the raw CSV (folder must be in same folder as exe): ")
 
 # csv_dir = "./unprocessedUpdate"
-processed_dir = './'+csv_dir[2:]+"-PROCESSED"
+processed_dir = './'+csv_dir"-PROCESSED"
 
 # csv_dir = "./unprocessed-6-19-24"
 # processed_dir = './processed-6-19-24'
@@ -72,7 +72,7 @@ for (path, names, fnames) in os.walk(csv_dir):
         plt.xlabel("Wavelength (nm)")
         plt.ylabel("Output Power (dBm)")
         plt.grid(alpha=0.7)
-        plt.savefig(processed_dir+"/"+name+"_average.png")
+        plt.savefig(processed_dir+"/graphs/"+name+"_average.png")
         # plt.show()
         plt.close()
 
@@ -82,7 +82,7 @@ for (path, names, fnames) in os.walk(csv_dir):
         plt.xlabel("Wavelength (nm)")
         plt.ylabel("Output Power (dBm)")
         plt.grid(alpha=0.7)
-        plt.savefig(processed_dir+"/"+name+"_linegraph.png")
+        plt.savefig(processed_dir+"/graphs/"+name+"_linegraph.png")
         # plt.show()
         plt.close()
 
@@ -92,7 +92,7 @@ for (path, names, fnames) in os.walk(csv_dir):
         plt.xlabel("Wavelength (nm)")
         plt.ylabel("Output Power (dBm)")
         plt.grid(alpha=0.7)
-        plt.savefig(processed_dir+"/"+name+"_scatter.png")
+        plt.savefig(processed_dir+"/graphs/"+name+"_scatter.png")
         # plt.show()
         plt.close()
 
