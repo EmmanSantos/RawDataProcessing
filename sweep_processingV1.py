@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 #create directories
 
-csv_dir = "./unprocessedUpdate"
-processed_dir = './'+csv_dir[2:]+"processed"
+csv_dir = "./24-6-21Raw"
+processed_dir = './'+csv_dir[2:]+"-PROCESSED"
 
 # csv_dir = "./unprocessed-6-19-24"
 # processed_dir = './processed-6-19-24'
