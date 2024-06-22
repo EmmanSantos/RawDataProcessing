@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 csv_dir = input("Enter the folder name of the raw CSV (folder must be in same folder as exe): ")
 
 # csv_dir = "./unprocessedUpdate"
-processed_dir = './'+"processed"+csv_dir[2:]
+processed_dir = './'+"processed"+csv_dir
 
 # csv_dir = "./unprocessed-6-19-24"
 # processed_dir = './processed-6-19-24'
