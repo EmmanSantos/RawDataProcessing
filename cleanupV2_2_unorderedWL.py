@@ -1,4 +1,5 @@
 import csv
+from math import log10
 ave_array = []
 
 # takes in arbitrary wavelength returns closest wavelength if difference with possible value is less than 0.05nm
@@ -18,6 +19,8 @@ def wl_select(wl_in):
 def ave_calc(mode,data = 0):
     
     global ave_array
+    mw_array = []
+
     data =float(data)
 
     if (mode == "add"):
@@ -25,12 +28,16 @@ def ave_calc(mode,data = 0):
 
         return
     elif(mode == "average"):
-        
-        total = sum(ave_array)
-        length = len(ave_array)
-       
 
-        ave = total/length
+        for a in ave_array:
+            mw_array.append(10**(a/10))
+        
+        total = sum(mw_array)
+        length = len(mw_array)
+        ave_mw = total/length
+        
+        ave = 10*log10(ave_mw)
+
         ave_array = []
         
 
