@@ -63,13 +63,13 @@ for (path, names, fnames) in os.walk(csv_dir):
             ave_power_plot.append(float(data_point[1]))
 
         name = name[0:-4]       
-        plt.figure(figsize=(15,7))
-        plt.plot(wl_plot)
-        plt.title(name)
-        plt.grid(alpha=0.7)
-        plt.show()
-        # plt.clf()
-        plt.close()
+        # plt.figure(figsize=(15,7))
+        # plt.plot(wl_plot)
+        # plt.title(name)
+        # plt.grid(alpha=0.7)
+        # plt.show()
+        # # plt.clf()
+        # plt.close()
 
         plt.figure(figsize=(15,7))
         plt.plot(ave_wl_plot,ave_power_plot)
