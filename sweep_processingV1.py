@@ -52,12 +52,12 @@ for (path, names, fnames) in os.walk(csv_dir):
         ave_power_plot = []
 
 
-        for data_point in processed_data[0][1:]:
+        for data_point in processed_data[0][0:]:
         
             wl_plot.append(float(data_point[1]))
             power_plot.append(float(data_point[2]))
 
-        for data_point in processed_data[1][1:]:
+        for data_point in processed_data[1][0:]:
         
             ave_wl_plot.append(float(data_point[0]))
             ave_power_plot.append(float(data_point[1]))
