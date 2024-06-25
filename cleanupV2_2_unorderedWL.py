@@ -47,7 +47,7 @@ def ave_calc(mode,data = 0):
         ave_array = []
         
 
-        return [ave,dB_stdev]
+        return [ave,mw_stdev]
 
 
 def cleanup(name,csv_path,output_path):
@@ -125,8 +125,9 @@ def cleanup(name,csv_path,output_path):
                 prev_wl = curr_wl
                 # print("Wavelength: ",data_array[i][1])
                 if(i == len(data_array)-1):
-                    ave_power = ave_calc("average")
-                    ave_data.append([prev_wl,ave_power]) 
+                    wl_stats = ave_calc("average")
+                    ave_data.append([prev_wl,wl_stats[0]])
+                    stdev_data.append([prev_wl,wl_stats[1]]) 
                 
                 
             else:
@@ -165,5 +166,5 @@ def cleanup(name,csv_path,output_path):
 
         for row in edited_data:
             csv_writer.writerow(row)
-    print(ave_data)
+    
     return [edited_data,ave_data,stdev_data]

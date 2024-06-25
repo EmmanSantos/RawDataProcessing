@@ -12,6 +12,7 @@ csv_dir = input("Enter the folder name of the raw CSV (folder must be in same fo
 processed_dir = './'+csv_dir+"-PROCESSED"
 graph_dir = processed_dir
 processed_dir = './'+csv_dir+"-PROCESSED/processed_csv"
+stdev_dir = './'+csv_dir+"-PROCESSED/stdev_graphs"
 
 # csv_dir = "./unprocessed-6-19-24"
 # processed_dir = './processed-6-19-24'
@@ -28,6 +29,8 @@ if not os.path.exists(processed_dir):
     os.makedirs(processed_dir)
 if not os.path.exists(graph_dir):
     os.makedirs(graph_dir)
+if not os.path.exists(stdev_dir):
+    os.makedirs(stdev_dir)
 
 
 
@@ -51,6 +54,8 @@ for (path, names, fnames) in os.walk(csv_dir):
         ave_wl_plot = []
         ave_power_plot = []
 
+        stdev_wl_plot = []
+        stdev_power_plot = []
 
         for data_point in processed_data[0][0:]:
         
@@ -58,14 +63,15 @@ for (path, names, fnames) in os.walk(csv_dir):
             power_plot.append(float(data_point[2]))
 
         for data_point in processed_data[1][0:]:
+            
         
             ave_wl_plot.append(float(data_point[0]))
             ave_power_plot.append(float(data_point[1]))
 
         for data_point in processed_data[2][0:]:
         
-            ave_wl_plot.append(float(data_point[0]))
-            ave_power_plot.append(float(data_point[1]))
+            stdev_wl_plot.append(float(data_point[0]))
+            stdev_power_plot.append(float(data_point[1]))
 
 
         name = name[0:-4]       
@@ -108,11 +114,12 @@ for (path, names, fnames) in os.walk(csv_dir):
         plt.close()
 
         plt.figure(figsize=(15,7))
-        plt.scatter(wl_plot,power_plot)
+        plt.bar(stdev_wl_plot,stdev_power_plot)
         plt.title(name+"_stdev")
         plt.xlabel("Wavelength (nm)")
         plt.ylabel("st_dev (dBm)")
         plt.grid(alpha=0.7)
+        plt.ylim([0,0.1])
         plt.savefig(graph_dir+"/stdev_graphs/"+name+"_stdev.png")
         # plt.show()
         plt.close()
