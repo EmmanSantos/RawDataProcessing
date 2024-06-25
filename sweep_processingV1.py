@@ -52,15 +52,21 @@ for (path, names, fnames) in os.walk(csv_dir):
         ave_power_plot = []
 
 
-        for data_point in processed_data[0][1:]:
+        for data_point in processed_data[0][0:]:
         
             wl_plot.append(float(data_point[1]))
             power_plot.append(float(data_point[2]))
 
-        for data_point in processed_data[1][1:]:
+        for data_point in processed_data[1][0:]:
         
             ave_wl_plot.append(float(data_point[0]))
             ave_power_plot.append(float(data_point[1]))
+
+        for data_point in processed_data[2][0:]:
+        
+            ave_wl_plot.append(float(data_point[0]))
+            ave_power_plot.append(float(data_point[1]))
+
 
         name = name[0:-4]       
         # plt.figure(figsize=(15,7))
@@ -98,6 +104,16 @@ for (path, names, fnames) in os.walk(csv_dir):
         plt.ylabel("Output Power (dBm)")
         plt.grid(alpha=0.7)
         plt.savefig(graph_dir+"/"+name+"_scatter.png")
+        # plt.show()
+        plt.close()
+
+        plt.figure(figsize=(15,7))
+        plt.scatter(wl_plot,power_plot)
+        plt.title(name+"_stdev")
+        plt.xlabel("Wavelength (nm)")
+        plt.ylabel("st_dev (dBm)")
+        plt.grid(alpha=0.7)
+        plt.savefig(graph_dir+"/stdev_graphs/"+name+"_stdev.png")
         # plt.show()
         plt.close()
 

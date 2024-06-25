@@ -1,5 +1,6 @@
 import csv
 from math import log10
+import statistics as st
 ave_array = []
 
 # takes in arbitrary wavelength returns closest wavelength if difference with possible value is less than 0.05nm
@@ -19,7 +20,7 @@ def wl_select(wl_in):
 def ave_calc(mode,data = 0):
     
     global ave_array
-    mw_array = []
+    
 
     data =float(data)
 
@@ -28,6 +29,7 @@ def ave_calc(mode,data = 0):
 
         return
     elif(mode == "average"):
+        mw_array = []
 
         for a in ave_array:
             mw_array.append(10**(a/10))
@@ -38,10 +40,14 @@ def ave_calc(mode,data = 0):
         
         ave = 10*log10(ave_mw)
 
+        #std dev calculation
+        mw_stdev = st.stdev(mw_array)
+        dB_stdev = 10*log10(mw_stdev)
+
         ave_array = []
         
 
-        return ave
+        return [ave,dB_stdev]
 
 
 def cleanup(name,csv_path,output_path):
@@ -71,7 +77,9 @@ def cleanup(name,csv_path,output_path):
 
     #array for storing the averaged data
     ave_data = []
-    
+
+     #array for storing the std dev
+    stdev_data = []
    
     # ALGO OVERVIEW
 
@@ -129,8 +137,9 @@ def cleanup(name,csv_path,output_path):
                     # print(curr_wl)  
                     if(len(edited_data)>0 and len(ave_array)>0):
                         edited_data.pop(len(edited_data)-1) #remove last point before transition and not append current point
-                        ave_power = ave_calc("average")
-                        ave_data.append([prev_wl,ave_power])
+                        wl_stats = ave_calc("average")
+                        ave_data.append([prev_wl,wl_stats[0]])
+                        stdev_data.append([prev_wl,wl_stats[1]])
                         prev_wl = curr_wl
 
                 elif prev_wl == 1567.13: #sweep was not reset from 1567.13
@@ -156,5 +165,5 @@ def cleanup(name,csv_path,output_path):
 
         for row in edited_data:
             csv_writer.writerow(row)
-
-    return [edited_data,ave_data]
+    print(ave_data)
+    return [edited_data,ave_data,stdev_data]
