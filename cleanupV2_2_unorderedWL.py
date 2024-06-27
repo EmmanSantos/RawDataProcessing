@@ -41,13 +41,13 @@ def ave_calc(mode,data = 0):
         ave = 10*log10(ave_mw)
 
         #std dev calculation
-        mw_stdev = st.stdev(mw_array)
-        dB_stdev = 10*log10(mw_stdev)
+        # mw_stdev = st.stdev(mw_array,ave_mw)
+        stdev = st.stdev(ave_array)
 
         ave_array = []
         
 
-        return [ave,mw_stdev]
+        return [ave,stdev]
 
 
 def cleanup(name,csv_path,output_path):

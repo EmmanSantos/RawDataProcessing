@@ -119,7 +119,7 @@ for (path, names, fnames) in os.walk(csv_dir):
         plt.xlabel("Wavelength (nm)")
         plt.ylabel("st_dev (dBm)")
         plt.grid(alpha=0.7)
-        plt.ylim([0,0.1])
+        plt.ylim([0,6])
         plt.savefig(graph_dir+"/stdev_graphs/"+name+"_stdev.png")
         # plt.show()
         plt.close()
